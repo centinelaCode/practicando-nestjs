@@ -87,10 +87,12 @@ export class ProductsController {
   }
 
   @Delete(':productId')
-  deleteProduct(@Param('productId') productId:number) {
-    return {
-      productId,
-      message: `Product ID:${productId} deleted`
-    }
+  deleteProduct(@Param('productId') productId:string) {
+    // return {
+    //   productId,
+    //   message: `Product ID:${productId} deleted`
+    // }
+
+    return this.productsService.delete(+productId)
   }
 }

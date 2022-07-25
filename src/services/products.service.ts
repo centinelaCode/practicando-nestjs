@@ -76,13 +76,18 @@ export class ProductsService {
   }
 
   delete(id: number) {
-    const productToDelete =  this.products.find((product) => product.id === id);
+    // const productToDelete =  this.products.find((product) => product.id === id);
+    const productToDelete = this.findOne(id);
+    console.log(productToDelete)
+
     if(!productToDelete) {
       return {
         message: `Product with ID:${id} not found`
       }
     }
 
-    return this.products.filter((product) => product.id !== id);
+
+    this.products = this.products.filter((product) => product.id !== id);
+    return productToDelete;
   }
 }

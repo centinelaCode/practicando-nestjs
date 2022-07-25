@@ -9,11 +9,12 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
-  ParseIntPipe,
+  // ParseIntPipe,
   // Res
 } from '@nestjs/common';
 // import { Response } from 'express';
 import { ProductsService } from '../services/products.service';
+import { ParseIntPipe } from '../common/parse-int.pipe'
 
 @Controller('products')
 export class ProductsController {
@@ -83,22 +84,22 @@ export class ProductsController {
   }
 
   @Put(':productId')
-  updateProduct(@Param('productId', ParseIntPipe) productId:number, @Body() payload: any){
+  updateProduct(@Param('productId') productId:string, @Body() payload: any){
     // return {
     //   productId,
     //   payload,
     //   message: `Product ID:${productId} update`
     // }
-    return this.productsService.update(productId, payload);
+    return this.productsService.update(+productId, payload);
   }
 
   @Delete(':productId')
-  deleteProduct(@Param('productId', ParseIntPipe) productId:number) {
+  deleteProduct(@Param('productId') productId:string) {
     // return {
     //   productId,
     //   message: `Product ID:${productId} deleted`
     // }
 
-    return this.productsService.delete(productId)
+    return this.productsService.delete(+productId)
   }
 }

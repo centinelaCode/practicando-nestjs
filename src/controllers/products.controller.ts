@@ -9,9 +9,9 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
-  Res
+  // Res
 } from '@nestjs/common';
-import { Response } from 'express';
+// import { Response } from 'express';
 import { ProductsService } from '../services/products.service';
 
 @Controller('products')
